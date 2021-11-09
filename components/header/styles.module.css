@@ -1,0 +1,30 @@
+.header_wrapper {
+    position: relative;
+    width: 100%;
+    min-height: 5rem;
+}
+
+.header_text {
+    color: var(--color-red);
+    text-align: center;
+    font-family: var(--ff-emphasis);
+    font-size: var(--fs-600);
+}
+
+.header_subtitle {
+    text-align: center;
+    font-family: var(--ff-normal);
+    color: var(--color-white);
+    width: 100%;
+    margin-top: var(--sp-200);
+    font-size: var(--fs-300);
+}
+
+@media (min-width: 768px) {
+    .header_text {
+        font-size: var(--fs-900);
+    }
+    .header_subtitle {
+        font-size: var(--fs-500);
+    }
+}

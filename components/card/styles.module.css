@@ -1,0 +1,77 @@
+.music_card {
+    background-color: var(--color-white);
+    overflow: hidden;
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+    user-select: none;
+    box-shadow: 0 0.75rem 0.8rem #000;
+    position: relative;
+    outline-offset: var(--sp-200);
+}
+
+.music_card.deselected {
+    outline: 4px solid transparent;
+}
+
+.music_card.selected {
+    outline: 4px solid white;
+}
+
+.music_card:hover {
+    transform: scale(1.05);
+}
+
+.track_image_wrapper {
+    height: 75%;
+    object-fit: cover;
+    position: relative;
+    width: 100%;
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.status_icon {
+    top: calc(50% - (var(--fs-500) / 2));
+    left: calc(50% - (var(--fs-500) / 2));
+    position: absolute;
+    height: var(--fs-500);
+    width: var(--fs-500);
+    fill: var(--color-red);
+    animation: rotate 1s linear infinite;
+}
+
+.track_image {
+    height: 100%;
+    width: 100%;
+}
+
+.track_info_wrapper {
+    padding: var(--sp-400);
+    flex-grow: 1;
+    font-family: var(--ff-normal);
+}
+
+.track_name {
+    color: var(--color-black);
+    font-size: var(--fs-500);
+    display: block;
+    font-family: inherit;
+}
+
+.track_artist {
+    color: var(--color-gray);
+    font-size: var(--fs-400);
+    display: block;
+    font-family: inherit;
+}

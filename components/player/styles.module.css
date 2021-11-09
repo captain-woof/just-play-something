@@ -1,0 +1,324 @@
+.player {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    height: 16vh;
+    background-color: var(--color-black);
+    color: var(--color-white);
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--ff-normal);
+    padding: 0 var(--sp-400);
+    gap: 8px 0;
+    z-index: 5;
+    box-shadow: 0 2px 16px var(--color-gray);
+}
+
+.thumbnail_wrapper {
+    --dimension: 2.75rem;
+    position: absolute;
+    height: var(--dimension);
+    width: var(--dimension);
+    border-radius: calc(var(--dimension) / 2);
+    transform: translate(-50%, -50%);
+    left: 50%;
+    top: -12.5%;
+    background-color: var(--color-white);
+    z-index: 1;
+}
+
+.thumbnail_inner_wrapper {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.disc_icon {
+    --dimension: 2.25rem;
+    fill: var(--color-black);
+    padding: 0.25rem;
+    position: relative;
+    z-index: 2;
+    height: var(--dimension);
+    width: var(--dimension);
+    animation: rotate 3s linear infinite;
+}
+
+.track_image {
+    --dimension: 2.75rem;
+    z-index: 3;
+    animation: rotate 5s linear infinite;
+    border-radius: calc(var(--dimension) / 2);
+    border: 2px solid var(--color-white);
+}
+
+.name {
+    font-size: var(--fs-400);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0 0.25rem;
+}
+
+.track_controls {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+    position: relative;
+    align-items: center;
+}
+
+.track_controls>* {
+    flex-basis: 0;
+    flex-grow: 1;
+}
+
+.track_controls_left {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 0 0.5rem;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+}
+
+.volume_container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 0 0.5rem;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+}
+
+.volume_icon {
+    --dimension: 1.25rem;
+    stroke: var(--color-white);
+    height: var(--dimension);
+    width: var(--dimension);
+    cursor: pointer;
+    transition: all 0.25s linear;
+}
+
+.volume_icon.volume_icon_dim {
+    opacity: 0.5;
+}
+
+.volume_icon:hover {
+    stroke: var(--color-red-bright);
+}
+
+.slider.volume_slider {
+    width: 75%;
+    height: 3px;
+}
+
+.slider.volume_slider::-webkit-slider-thumb {
+    --dimension: 0.6rem;
+    height: var(--dimension);
+    width: var(--dimension);
+    border-radius: calc(var(--dimension) / 2);
+}
+
+.slider.volume_slider::-moz-range-thumb {
+    --dimension: 0.6rem;
+    height: var(--dimension);
+    width: var(--dimension);
+    border-radius: calc(var(--dimension) / 2);
+}
+
+.slider.volume_slider::-ms-thumb {
+    --dimension: 0.6rem;
+    height: var(--dimension);
+    width: var(--dimension);
+    border-radius: calc(var(--dimension) / 2);
+}
+
+.slider {
+    width: 100%;
+    height: 2px;
+    cursor: pointer;
+    position: relative;
+    border-radius: 50rem;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-color: var(--color-gray);
+}
+
+.slider::-webkit-slider-runnable-track {
+    box-shadow: none;
+    border: none;
+    background: transparent;
+}
+
+.slider::-moz-range-track {
+    appearance: none;
+    -moz-appearance: none;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+}
+
+.slider::-ms-track {
+    appearance: none;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+}
+
+.slider::-moz-range-progress {
+    -moz-appearance: none;
+    appearance: none;
+    border: none;
+    box-shadow: none;
+    background-color: var(--color-white);
+}
+
+.slider::-ms-fill-lower {
+    appearance: none;
+    border: none;
+    box-shadow: none;
+    background-color: var(--color-white);
+}
+
+.slider::-webkit-slider-thumb {
+    appearance: none;
+    -webkit-appearance: none;
+    --dimension: 1rem;
+    background-color: var(--color-red-bright);
+    height: var(--dimension);
+    width: var(--dimension);
+    border-radius: calc(var(--dimension) / 2);
+    position: relative;
+}
+
+.slider::-moz-range-thumb {
+    appearance: none;
+    -moz-appearance: none;
+    --dimension: 1rem;
+    background-color: var(--color-red-bright);
+    height: var(--dimension);
+    width: var(--dimension);
+    border-radius: calc(var(--dimension) / 2);
+}
+
+.slider::-ms-thumb {
+    appearance: none;
+    --dimension: 1rem;
+    background-color: var(--color-red-bright);
+    height: var(--dimension);
+    width: var(--dimension);
+    border-radius: calc(var(--dimension) / 2);
+}
+
+.info_icon {
+    --dimension: 1.125rem;
+    height: var(--dimension);
+    width: var(--dimension);
+    cursor: pointer;
+    stroke: var(--color-white);
+    transition: all 0.25s linear;
+}
+
+.info_icon:hover {
+    stroke: var(--color-red-bright);
+}
+
+.autoplay_icon {
+    --dimension: 1.5rem;
+    height: var(--dimension);
+    width: var(--dimension);
+    cursor: pointer;
+}
+
+.autoplay_icon>path {
+    fill: var(--color-red-bright);
+}
+
+.autoplay_icon.autoplay_disabled>path {
+    fill: var(--color-white);
+}
+
+.autoplay_icon.autoplay_disabled {
+    opacity: 0.5;
+}
+
+.time {
+    font-size: var(--fs-200);
+    font-style: italic;
+}
+
+.player_button_container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 0 1rem;
+    height: 1.5rem;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+}
+
+.player_button_container.player_buttons_disabled {
+    opacity: 0.5;
+}
+
+.player_button_container.player_buttons_disabled>* {
+    cursor: not-allowed;
+}
+
+.player_button_container.player_buttons_disabled>*:hover {
+    cursor: not-allowed;
+    transform: unset;
+}
+
+.player_button {
+    height: 100%;
+    width: auto;
+    cursor: pointer;
+    transition: all 0.2s linear;
+}
+
+.player_button polygon {
+    stroke: var(--color-white);
+}
+
+.player_button:hover polygon {
+    stroke: var(--color-red-bright);
+}
+
+.player_button:hover {
+    transform: scale(1.25);
+}
+
+.player_button:active {
+    transform: scale(0.85);
+}
+
+.player_button>* {
+    outline: var(--color-white);
+    stroke: var(--color-white);
+}
+
+.audio {
+    display: none;
+}

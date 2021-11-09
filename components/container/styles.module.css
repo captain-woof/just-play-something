@@ -1,0 +1,16 @@
+.container {
+    position: relative;
+    min-height: 100vh;
+    padding: var(--sp-300);
+    width: 100%;
+}
+
+@media (min-width: 768px){
+    padding: var(--sp-600);
+}
+
+@media (max-width: 560px){
+    .container{
+        overflow-x: hidden;
+    }
+}

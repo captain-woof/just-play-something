@@ -1,0 +1,1 @@
+export const getProxiedImageUrl = (url: string) => `/api/imageproxy?url=${url}`
