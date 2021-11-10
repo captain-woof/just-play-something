@@ -20,22 +20,27 @@ const Player = () => {
             {currentTrack &&
                 <div className={cx(styles.info_modal, showInfo && styles.show)} onClick={toggleTrackInfo}>
                     <figure className={styles.info_card}>
+                        {/* Track name */}
                         <div className={styles.info_text}>
                             <span className={styles.info_key}>Name:</span>
                             <span className={styles.info_val}>{currentTrack.name}</span>
                         </div>
+                        {/* Track artist */}
                         <div className={styles.info_text}>
                             <span className={styles.info_key}>Artist:</span>
                             <span className={styles.info_val}>{currentTrack.artist_name}</span>
                         </div>
+                        {/* Track album */}
                         <div className={styles.info_text}>
                             <span className={styles.info_key}>Album:</span>
                             <span className={styles.info_val}>{currentTrack.album_name}</span>
                         </div>
+                        {/* Track released on */}
                         <div className={styles.info_text}>
                             <span className={styles.info_key}>Released on:</span>
                             <span className={styles.info_val}>{currentTrack.releasedate}</span>
                         </div>
+                        {/* Links */}
                         <div className={styles.info_button_containers}>
                             {currentTrack.audiodownload_allowed &&
                                 <a className={styles.info_button} href={currentTrack.audiodownload} download>
@@ -46,7 +51,7 @@ const Player = () => {
                                 Visit
                             </a>
                         </div>
-
+                        {/* Licenses */}
                         <div className={styles.info_text} style={{ marginTop: 'var(--sp-400)' }}>
                             <span className={cx(styles.info_key, styles.licenses_key)}>Licenses</span>
                             <ul className={styles.licenses_list}>
@@ -101,18 +106,19 @@ const Player = () => {
                 </div>
             </div>
 
-            {/* Track and artist name */}
-            <div aria-labelledby="Track name" aria-describedby={(currentTrack?.name || "Hey there!")} className={styles.track_name_info}>
+            {/* Track name */}
+            <div aria-labelledby="Track name" aria-describedby={(currentTrack?.name || "Hey there!")} className={styles.track_name} onClick={toggleTrackInfo} >
                 {currentTrack?.name || "Hey there!"}
-                <InfoButton aria-labelledby='Info button' className={styles.info_icon} onClick={toggleTrackInfo} />
+                <InfoButton aria-labelledby='Info button' className={styles.info_icon} />
             </div>
+            {/* Artist name */}
             <div aria-labelledby="Artist name" aria-describedby={(currentTrack?.artist_name || "Select a track to get started")} className={styles.artist_name}>
                 {currentTrack?.artist_name || "Select a track to get started"}
             </div>
 
             {/* Timestamp, Autoplay */}
             <div className={styles.timestamp_autoplay}>
-                <AutoplayButton aria-labelledby='Set autoplay' className={cx(styles.autoplay_icon, !autoplay && styles.autoplay_disabled)} onClick={toggleAutoplay} />
+                <AutoplayButton aria-labelledby='Set autoplay' className={cx(styles.autoplay_icon, !autoplay && styles.autoplay_disabled)} onClick={toggleAutoplay} title="Set autoplay" />
                 <span aria-labelledby="Track duration" aria-describedby={`${getAccessibleTime(currentTrack?.duration || 0)}`} className={styles.time}>
                     {`${getFormattedTime(seekSecs)} / ${getFormattedTime(currentTrack?.duration || 0)}`}
                 </span>
@@ -136,7 +142,10 @@ const Player = () => {
                         ? <VolumeMutedButton title="Volume slider" aria-labelledby="Volume slider" className={cx(styles.volume_icon, styles.volume_icon_dim)} onClick={toggleMute} />
                         : <VolumeButton title="Volume slider" aria-labelledby="Volume slider" className={styles.volume_icon} onClick={toggleMute} />
                     }
-                    <input aria-labelledby="Volume slider" type='range' min={0} max={1.0} step={0.05} className={cx(styles.slider, styles.volume_slider)} id='volume-track' onInput={handleVolumeChange} value={volume} />
+                    <input aria-labelledby="Volume slider" type='range' min={0} max={1.0} step={0.01} className={cx(styles.slider, styles.volume_slider)} id='volume-track' onInput={handleVolumeChange} value={volume} />
+                    <span className={styles.volume_indicator}>
+                        {parseInt(`${volume * 100}`)}
+                    </span>
                 </div>
             </div>
             <audio className={styles.audio} src={currentTrack?.audio} ref={audioRef} onTimeUpdate={handleSeekChangeAudio} onEnded={playNextTrack} autoPlay={autoplay} onPlay={() => setPause(false)} muted={mute} />
