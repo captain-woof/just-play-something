@@ -1,4 +1,4 @@
-import { useRef, useState, useEffect, useCallback } from "react"
+import { useRef, useState, useEffect, useCallback, MouseEvent } from "react"
 import { useCurrentTrack, useTracks } from "./tracks"
 
 
@@ -13,6 +13,9 @@ export const usePlayer = () => {
     const [autoplay, setAutoPlay] = useState<boolean>(true)
     const [volume, setVolume] = useState<number>(0.25)
     const [mute, setMute] = useState<boolean>(false)
+
+    // State for triggering track info modal
+    const [showInfo, setShowInfo] = useState<boolean>(false)
 
     // Reference to audio element
     const audioRef = useRef<HTMLAudioElement>(null)
@@ -66,6 +69,13 @@ export const usePlayer = () => {
     //// Control functions
     ///////////////////////
 
+    // Function to toggle showing Track info
+    const toggleTrackInfo = useCallback((e: MouseEvent) => {
+        if (!!e && e.target === e.currentTarget) {
+            setShowInfo(prev => !prev)
+        }
+    }, [])
+
     // Function to toggle Mute state
     const toggleMute = useCallback(() => {
         setMute(prev => !prev)
@@ -115,6 +125,8 @@ export const usePlayer = () => {
     }, [currentTrack, setCurrentTrack, tracks])
 
     return {
+        showInfo,
+        toggleTrackInfo,
         pause,
         setPause,
         seekSecs,

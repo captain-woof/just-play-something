@@ -4,6 +4,9 @@
 /* CUSTOM PROPERTIES */
 
 :root {
+  /* Easings */
+  --ease-in-out: cubic-bezier(0.83, 0, 0.17, 1);
+  --ease-out: cubic-bezier(0, 0.55, 0.45, 1);
   /* Font families */
   --ff-normal: 'Nunito', sans-serif;
   --ff-emphasis: 'Mochiy Pop One', sans-serif;

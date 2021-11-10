@@ -16,6 +16,104 @@
     box-shadow: 0 2px 16px var(--color-gray);
 }
 
+.info_modal {
+    position: fixed;
+    inset: 0;
+    z-index: 50;
+    height: 100%;
+    width: 100%;
+    transform: translateY(100%);
+    backdrop-filter: blur(1.5px);
+    transition: transform 1s var(--ease-in-out);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.info_modal::before {
+    content: '';
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    z-index: -1;
+    background-color: var(--color-black);
+    opacity: 0.7;
+    cursor: pointer;
+}
+
+.info_modal.show {
+    transform: translateY(0%);
+}
+
+.info_card {
+    width: 85%;
+    max-height: 75%;
+    border-radius: 6px;
+    background-color: var(--color-white);
+    box-shadow: 0 0 16px var(--color-black);
+    position: relative;
+    color: var(--color-black);
+    overflow: hidden;
+    padding: var(--sp-400);
+}
+
+.info_button_containers {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 0 0.5rem;
+    margin-top: var(--sp-200);
+}
+
+.info_button {
+    display: block;
+    padding: 0.25rem 0.5rem;
+    background-color: var(--color-gray);
+    color: var(--color-white);
+    border-radius: 50rem;
+    font-size: var(--fs-300);
+    transition: background-color 0.25s linear;
+}
+
+.info_button:hover {
+    background-color: var(--color-red);
+}
+
+.info_text {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0 0.5rem;
+}
+
+.info_text.licenses_key {
+    justify-content: center;
+    padding-top: var(--sp-400);
+}
+
+.info_key {
+    color: var(--color-black);
+}
+
+.info_key.licenses_key {
+    font-size: var(--fs-300);
+    font-weight: 600;
+}
+
+.info_val {
+    color: var(--color-gray);
+}
+
+.licenses_list {
+    color: var(--color-red);
+    margin: 0;
+    padding-inline-start: 30px;
+}
+
+.info_val.license_display_name {
+    color: var(--color-red);
+    font-size: var(--fs-300);
+}
+
 .thumbnail_wrapper {
     --dimension: 2.75rem;
     position: absolute;

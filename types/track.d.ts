@@ -17,6 +17,18 @@ export interface ITrack {
     audiodownload_allowed: boolean
     [key: string]: any
     index: number
+    licenses: {
+        ccnc: "true" | "false"
+        ccnd: "true" | "false"
+        ccsa: "true" | "false"
+        prolicensing: "true" | "false"
+        probackground: "true" | "false"
+    }
 }
 
 export interface ITracks extends Array<ITrack> { }
+
+export type TrackLicense = {
+    displayName: string
+    url: string
+}
