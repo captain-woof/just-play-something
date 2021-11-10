@@ -2,7 +2,8 @@
     position: fixed;
     bottom: 0;
     left: 0;
-    height: 22.5vh;
+    min-height: 22.5vh;
+    max-height: max-content;
     background-color: var(--color-black);
     color: var(--color-white);
     width: 100%;
@@ -10,7 +11,7 @@
     flex-direction: column;
     align-items: center;
     font-family: var(--ff-normal);
-    padding: var(--sp-200) var(--sp-400) 0 var(--sp-400);
+    padding: var(--sp-200) var(--sp-400) var(--sp-300) var(--sp-400);
     gap: 4px 0;
     z-index: 5;
     box-shadow: 0 2px 16px var(--color-gray);
@@ -139,7 +140,6 @@
     top: -12.5%;
     background-color: var(--color-white);
     z-index: 1;
-    box-shadow: 0 0 12px var(--color-black);
 }
 
 @media (min-width: 560px) {
@@ -156,6 +156,24 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    border-radius: 50%;
+}
+
+.disc_icon {
+    --dimension: 2.25rem;
+    fill: var(--color-black);
+    padding: 0.25rem;
+    position: relative;
+    z-index: 2;
+    height: var(--dimension);
+    width: var(--dimension);
+}
+
+.track_image {
+    --dimension: 2.75rem;
+    z-index: 3;
+    border-radius: 50%;
+    border: 2px solid var(--color-white);
 }
 
 @keyframes rotate {
@@ -167,23 +185,12 @@
     }
 }
 
-.disc_icon {
-    --dimension: 2.25rem;
-    fill: var(--color-black);
-    padding: 0.25rem;
-    position: relative;
-    z-index: 2;
-    height: var(--dimension);
-    width: var(--dimension);
+.disc_icon.rotate {
     animation: rotate 3s linear infinite;
 }
 
-.track_image {
-    --dimension: 2.75rem;
-    z-index: 3;
+.track_image.rotate {
     animation: rotate 5s linear infinite;
-    border-radius: 50%;
-    border: 2px solid var(--color-white);
 }
 
 @media (min-width: 560px) {
@@ -227,6 +234,7 @@
     position: relative;
     align-items: center;
     flex-grow: 1;
+    padding-top: var(--sp-200) 0 0 0;
 }
 
 .track_controls>* {
@@ -238,7 +246,7 @@
     .track_controls {
         justify-content: unset;
         gap: 0 2rem;
-        padding: 0 2rem;
+        padding: var(--sp-200) 2rem 0 2rem;
     }
     .track_controls>* {
         flex-basis: unset;
@@ -293,6 +301,16 @@
 .slider.volume_slider {
     width: 75%;
     height: 3px;
+    position: relative;
+}
+
+.slider.volume_slider::before {
+    content: '';
+    position: absolute;
+    display: block;
+    height: 100%;
+    width: var(--volume-perc);
+    background-color: var(--color-white);
 }
 
 .slider.volume_slider::-webkit-slider-thumb {
@@ -341,6 +359,15 @@
     background-color: var(--color-gray);
 }
 
+.slider::before {
+    content: '';
+    position: absolute;
+    display: block;
+    height: 100%;
+    width: var(--progress-perc);
+    background-color: var(--color-white);
+}
+
 .slider::-webkit-slider-runnable-track {
     box-shadow: none;
     border: none;
@@ -360,21 +387,6 @@
     background: transparent;
     border: none;
     box-shadow: none;
-}
-
-.slider::-moz-range-progress {
-    -moz-appearance: none;
-    appearance: none;
-    border: none;
-    box-shadow: none;
-    background-color: var(--color-white);
-}
-
-.slider::-ms-fill-lower {
-    appearance: none;
-    border: none;
-    box-shadow: none;
-    background-color: var(--color-white);
 }
 
 .slider::-webkit-slider-thumb {

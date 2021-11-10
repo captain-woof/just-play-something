@@ -68,6 +68,7 @@
 html, body {
   font-size: var(--fs-400);
   word-break: break-word;
+  scroll-behavior: smooth;
 }
 
 /* Border box */

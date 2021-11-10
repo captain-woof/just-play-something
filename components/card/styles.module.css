@@ -60,6 +60,7 @@
     padding: var(--sp-400);
     flex-grow: 1;
     font-family: var(--ff-normal);
+    overflow-y: auto;
 }
 
 .track_name {

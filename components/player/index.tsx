@@ -9,10 +9,19 @@ import { TiArrowLoop as AutoplayButton } from 'react-icons/ti'
 import cx from 'classnames'
 import { usePlayer } from '../../hooks/player'
 import { track_licenses } from '../../constants/track_licenses'
+import { CSSProperties, useMemo } from 'react'
 
 const Player = () => {
     const { currentTrack } = useCurrentTrack()
     const { audioRef, autoplay, volume, seekSecs, pause, setPause, mute, toggleMute, handleVolumeChange, toggleAutoplay, handleSeekChangeSlider, handleSeekChangeAudio, playNextTrack, playPrevTrack, showInfo, toggleTrackInfo } = usePlayer()
+
+    const volumeWidthStyle = useMemo(() => ({
+        "--volume-perc": `${volume * 100}%`
+    }), [volume]) as CSSProperties
+
+    const progressWidthStyle = useMemo(() => ({
+        "--progress-perc": `${((!!audioRef.current) ? (seekSecs / audioRef.current?.duration) : 0) * 100}%`
+    }), [audioRef, seekSecs]) as CSSProperties
 
     return (
         <aside className={styles.player}>
@@ -99,9 +108,9 @@ const Player = () => {
             {/* Rotating track image */}
             <div className={styles.thumbnail_wrapper}>
                 <div className={styles.thumbnail_inner_wrapper}>
-                    <DiscIcon className={styles.disc_icon} />
+                    <DiscIcon className={cx(styles.disc_icon, !pause && styles.rotate)} />
                     {currentTrack &&
-                        <Image layout='fill' src={currentTrack?.image} alt={`${currentTrack?.name} track image`} objectFit='cover' className={styles.track_image} />
+                        <Image layout='fill' src={currentTrack?.image} alt={`${currentTrack?.name} track image`} objectFit='cover' className={cx(styles.track_image, !pause && styles.rotate)} />
                     }
                 </div>
             </div>
@@ -125,16 +134,16 @@ const Player = () => {
             </div>
 
             {/* Progress slider */}
-            <input aria-labelledby="Progress slider" type='range' min={0} max={currentTrack?.duration} className={styles.slider} id='progress-track' onInput={handleSeekChangeSlider} value={seekSecs} disabled={!currentTrack} />
+            <input aria-labelledby="Progress slider" type='range' min={0} max={currentTrack?.duration} className={styles.slider} id='progress-track' onInput={handleSeekChangeSlider} value={seekSecs} disabled={!currentTrack} style={progressWidthStyle} />
 
             <div className={styles.track_controls}>
                 {/* Prev, Play/Pause, Next */}
                 <div className={cx(styles.player_button_container, !currentTrack && styles.player_buttons_disabled)}>
-                    <PrevTrackButton className={styles.player_button} title="Skip backward" aria-labelledby="Skip backward button" onClick={playPrevTrack} />
+                    <PrevTrackButton className={styles.player_button} title="Previous track" aria-labelledby="Previous track button" onClick={() => { currentTrack &&playPrevTrack() }} />
                     {pause
-                        ? <PlayButton className={styles.player_button} title="Play" aria-labelledby="Play button" onClick={() => { setPause(false) }} />
-                        : <PauseButton className={styles.player_button} title="Pause" aria-labelledby="Pause button" onClick={() => { setPause(true) }} />}
-                    <NextTrackButton className={styles.player_button} title="Skip forward" aria-labelledby="Skip forward button" onClick={playNextTrack} />
+                        ? <PlayButton className={styles.player_button} title="Play" aria-labelledby="Play button" onClick={() => { currentTrack && setPause(false) }} />
+                        : <PauseButton className={styles.player_button} title="Pause" aria-labelledby="Pause button" onClick={() => { currentTrack && setPause(true) }} />}
+                    <NextTrackButton className={styles.player_button} title="Next track" aria-labelledby="Next track button" onClick={() => { currentTrack && playNextTrack() }} />
                 </div>
                 {/* Volume */}
                 <div className={styles.volume_container}>
@@ -142,7 +151,7 @@ const Player = () => {
                         ? <VolumeMutedButton title="Volume slider" aria-labelledby="Volume slider" className={cx(styles.volume_icon, styles.volume_icon_dim)} onClick={toggleMute} />
                         : <VolumeButton title="Volume slider" aria-labelledby="Volume slider" className={styles.volume_icon} onClick={toggleMute} />
                     }
-                    <input aria-labelledby="Volume slider" type='range' min={0} max={1.0} step={0.01} className={cx(styles.slider, styles.volume_slider)} id='volume-track' onInput={handleVolumeChange} value={volume} />
+                    <input aria-labelledby="Volume slider" type='range' min={0} max={1.0} step={0.01} className={cx(styles.slider, styles.volume_slider)} id='volume-track' onInput={handleVolumeChange} value={volume} style={volumeWidthStyle} />
                     <span className={styles.volume_indicator}>
                         {parseInt(`${volume * 100}`)}
                     </span>
