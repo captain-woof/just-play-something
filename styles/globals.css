@@ -8,7 +8,7 @@
   --ff-normal: 'Nunito', sans-serif;
   --ff-emphasis: 'Mochiy Pop One', sans-serif;
   /* Colors */
-  --color-black: #1b1b1b;
+  --color-black: #242424;
   --color-gray: #5c5c5c;
   --color-red: #a02121;
   --color-red-bright: #ff4330;
@@ -133,7 +133,7 @@ h1 {
 }
 
 body {
-  background-color: #1b1b1b;
+  background-color: var(--color-black);
 }
 
 body, html {

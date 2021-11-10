@@ -3,8 +3,8 @@
 .music_grid {
     --grid-min-width: 300px;
     --grid-min-height: 400px;
-    --grid-min-width-mobile: 280px;
-    --grid-min-height-mobile: 55vh;
+    --grid-min-width-mobile: 260px;
+    --grid-min-height-mobile: 45vh;
     display: grid;
     margin-top: var(--sp-500);
     grid-template-columns: repeat(auto-fit, minmax(var(--grid-min-width), 350px));

@@ -24,22 +24,28 @@ const Player = () => {
                     }
                 </div>
             </div>
+            
             {/* Track and artist name */}
-            <span aria-labelledby="Track and artist name" aria-describedby={(currentTrack?.name || "Hey there!") + (currentTrack?.artist_name || "Select a track to get started")} className={styles.name}>
-                <b>{ellipsize(currentTrack?.name) || "Hey there!"}</b> - <i>{ellipsize(currentTrack?.artist_name) || "Select a track to get started"}</i>
+            <div aria-labelledby="Track name" aria-describedby={(currentTrack?.name || "Hey there!")} className={styles.track_name_info}>
+                {currentTrack?.name || "Hey there!"}
                 <InfoButton aria-labelledby='Info button' className={styles.info_icon} />
-            </span>
+            </div>
+            <div aria-labelledby="Artist name" aria-describedby={(currentTrack?.artist_name || "Select a track to get started")} className={styles.artist_name}>
+                {currentTrack?.artist_name || "Select a track to get started"}
+            </div>
+
+            {/* Timestamp, Autoplay */}
+            <div className={styles.timestamp_autoplay}>
+                <AutoplayButton aria-labelledby='Set autoplay' className={cx(styles.autoplay_icon, !autoplay && styles.autoplay_disabled)} onClick={toggleAutoplay} />
+                <span aria-labelledby="Track duration" aria-describedby={`${getAccessibleTime(currentTrack?.duration || 0)}`} className={styles.time}>
+                    {`${getFormattedTime(seekSecs)} / ${getFormattedTime(currentTrack?.duration || 0)}`}
+                </span>
+            </div>
+
             {/* Progress slider */}
             <input aria-labelledby="Progress slider" type='range' min={0} max={currentTrack?.duration} className={styles.slider} id='progress-track' onInput={handleSeekChangeSlider} value={seekSecs} disabled={!currentTrack} />
 
             <div className={styles.track_controls}>
-                {/* Timestamp, Autoplay */}
-                <div className={styles.track_controls_left}>
-                    <AutoplayButton aria-labelledby='Set autoplay' className={cx(styles.autoplay_icon, !autoplay && styles.autoplay_disabled)} onClick={toggleAutoplay} />
-                    <span aria-labelledby="Track duration" aria-describedby={`${getAccessibleTime(currentTrack?.duration || 0)}`} className={styles.time}>
-                        {`${getFormattedTime(seekSecs)} / ${getFormattedTime(currentTrack?.duration || 0)}`}
-                    </span>
-                </div>
                 {/* Prev, Play/Pause, Next */}
                 <div className={cx(styles.player_button_container, !currentTrack && styles.player_buttons_disabled)}>
                     <PrevTrackButton className={styles.player_button} title="Skip backward" aria-labelledby="Skip backward button" onClick={playPrevTrack} />
