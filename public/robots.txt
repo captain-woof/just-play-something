@@ -1,0 +1,6 @@
+User-Agent: *
+Allow: /
+Disallow: /api
+
+
+Sitemap: https://just-play-someth.in/sitemap.xml
