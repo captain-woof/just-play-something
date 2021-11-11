@@ -22,9 +22,9 @@ const Genres = () => {
     const { setTag, query: { tags } } = useQuery()
 
     return (
-        <div className={styles.genres_container}>
+        <div className={styles.genres_container} aria-labelledby="Genres" aria-describedby="Select a genre you like">
             {genres.map((genre, index) => (
-                <button key={index} className={cx(styles.genre, tags === genre.name && styles.selected)} onClick={() => { setTag(genre.name) }}>
+                <button key={index} className={cx(styles.genre, tags === genre.name && styles.selected)} onClick={() => { setTag(genre.name) }} aria-labelledby={genre.displayName}>
                     {genre.displayName}
                 </button>
             ))}

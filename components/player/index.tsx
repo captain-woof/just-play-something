@@ -27,30 +27,30 @@ const Player = () => {
         <aside className={styles.player}>
             {/* Track info modal */}
             {currentTrack &&
-                <div className={cx(styles.info_modal, showInfo && styles.show)} onClick={toggleTrackInfo}>
+                <div className={cx(styles.info_modal, showInfo && styles.show)} onClick={toggleTrackInfo} aria-labelledby="Track info">
                     <figure className={styles.info_card}>
                         {/* Track name */}
-                        <div className={styles.info_text}>
+                        <div className={styles.info_text} aria-labelledby="Name">
                             <span className={styles.info_key}>Name:</span>
                             <span className={styles.info_val}>{currentTrack.name}</span>
                         </div>
                         {/* Track artist */}
-                        <div className={styles.info_text}>
+                        <div className={styles.info_text} aria-labelledby="Artist">
                             <span className={styles.info_key}>Artist:</span>
                             <span className={styles.info_val}>{currentTrack.artist_name}</span>
                         </div>
                         {/* Track album */}
-                        <div className={styles.info_text}>
+                        <div className={styles.info_text} aria-labelledby="Album">
                             <span className={styles.info_key}>Album:</span>
                             <span className={styles.info_val}>{currentTrack.album_name}</span>
                         </div>
                         {/* Track released on */}
-                        <div className={styles.info_text}>
+                        <div className={styles.info_text} aria-labelledby="Released on">
                             <span className={styles.info_key}>Released on:</span>
                             <span className={styles.info_val}>{currentTrack.releasedate}</span>
                         </div>
                         {/* Links */}
-                        <div className={styles.info_button_containers}>
+                        <div className={styles.info_button_containers} aria-labelledby="Links">
                             {currentTrack.audiodownload_allowed &&
                                 <a className={styles.info_button} href={currentTrack.audiodownload} download>
                                     Download
@@ -61,39 +61,39 @@ const Player = () => {
                             </a>
                         </div>
                         {/* Licenses */}
-                        <div className={styles.info_text} style={{ marginTop: 'var(--sp-400)' }}>
+                        <div className={styles.info_text} style={{ marginTop: 'var(--sp-400)' }} aria-labelledby="Licenses">
                             <span className={cx(styles.info_key, styles.licenses_key)}>Licenses</span>
                             <ul className={styles.licenses_list}>
                                 {currentTrack.licenses.ccnc === 'true' &&
-                                    <li>
+                                    <li aria-labelledby="CCNC">
                                         <a href={track_licenses.ccnc.url} target="_blank" rel="noreferrer">
                                             <span className={cx(styles.info_val, styles.license_display_name)}>{track_licenses.ccnc.displayName}</span>
                                         </a>
                                     </li>
                                 }
                                 {currentTrack.licenses.ccnd === 'true' &&
-                                    <li>
+                                    <li aria-labelledby="CCND">
                                         <a href={track_licenses.ccnd.url} target="_blank" rel="noreferrer">
                                             <span className={cx(styles.info_val, styles.license_display_name)}>{track_licenses.ccnd.displayName}</span>
                                         </a>
                                     </li>
                                 }
                                 {currentTrack.licenses.ccsa === 'true' &&
-                                    <li>
+                                    <li aria-labelledby="CCSA">
                                         <a href={track_licenses.ccsa.url} target="_blank" rel="noreferrer">
                                             <span className={cx(styles.info_val, styles.license_display_name)}>{track_licenses.ccsa.displayName}</span>
                                         </a>
                                     </li>
                                 }
                                 {currentTrack.licenses.prolicensing === 'true' &&
-                                    <li>
+                                    <li aria-labelledby="Jamendo">
                                         <a href={track_licenses.prolicensing.url} target="_blank" rel="noreferrer">
                                             <span className={cx(styles.info_val, styles.license_display_name)}>{track_licenses.prolicensing.displayName}</span>
                                         </a>
                                     </li>
                                 }
                                 {currentTrack.licenses.probackground === 'true' &&
-                                    <li>
+                                    <li aria-labelledby="Jamendo">
                                         <a href={track_licenses.probackground.url} target="_blank" rel="noreferrer">
                                             <span className={cx(styles.info_val, styles.license_display_name)}>{track_licenses.probackground.displayName}</span>
                                         </a>

@@ -27,24 +27,24 @@ const Navbar = () => {
     }, [])
 
     return (
-        <nav className={styles.navbar}>
-            <Link href="/" passHref><a className={styles.home_link}>
+        <nav className={styles.navbar} aria-labelledby="Navbar">
+            <Link href="/" passHref><a className={styles.home_link} aria-labelledby="Home">
                 <MusicIcon className={styles.home_icon} />
             </a></Link>
-            <ul className={styles.navbar_links}>
+            <ul className={styles.navbar_links} aria-labelledby="Navbar links">
                 {navbarLinks.map((navbarLink, index) => (
-                    <li className={styles.link} key={index}>
+                    <li className={styles.link} key={index} aria-labelledby={navbarLink.displayName}>
                         <Link href={navbarLink.url} passHref><a>
                             {navbarLink.displayName}
                         </a></Link>
                     </li>
                 ))}
             </ul>
-            <MenuIcon className={styles.menu_icon} onClick={toggleMenuOpen} />
-            <div className={cx(styles.navbar_menu_backdrop, menuOpen && styles.open)} onClick={toggleMenuOpen} />
-            <div className={cx(styles.navbar_menu, menuOpen && styles.open)}>
+            <MenuIcon className={styles.menu_icon} onClick={toggleMenuOpen} aria-labelledby="Menu button" />
+            <div className={cx(styles.navbar_menu_backdrop, menuOpen && styles.open)} onClick={toggleMenuOpen} aria-labelledby="Menu backdrop" aria-describedby="Tap to close the menu" />
+            <div className={cx(styles.navbar_menu, menuOpen && styles.open)} aria-labelledby="Menu">
                 {navbarLinks.map((navbarLink, index) => (
-                    <div className={styles.menu_link} key={index}>
+                    <div className={styles.menu_link} key={index} aria-labelledby="Menu item" aria-describedby={navbarLink.displayName}>
                         <Link href={navbarLink.url} passHref><a>
                             {navbarLink.displayName}
                         </a></Link>

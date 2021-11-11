@@ -32,10 +32,10 @@ const MusicCard = ({ track }: IMusicCard) => {
 
     // If card is in view and is last track, fetch more tracks
     useEffect(() => {
-        if ((tracks.length - 1 === track.index) && inView){
+        if ((tracks.length - 1 === track.index) && inView) {
             fetchTracks()
         }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [inView, tracks.length, track.index])
 
     return (
@@ -45,8 +45,12 @@ const MusicCard = ({ track }: IMusicCard) => {
                 <Image className={styles.track_image} alt={`${name} Cover art`} src={image} layout='fill' placeholder='empty' objectFit='cover' objectPosition='center center' />
             </div>
             <figcaption className={styles.track_info_wrapper}>
-                <span className={styles.track_name}>{name}</span>
-                <span className={styles.track_artist}>{artist_name}</span>
+                <span className={styles.track_name} aria-labelledby="Track name" aria-describedby={name}>
+                    {name}
+                </span>
+                <span className={styles.track_artist} aria-labelledby="Artist name" aria-describedby={artist_name}>
+                    {artist_name}
+                </span>
             </figcaption>
         </figure>
     )
