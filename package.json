@@ -1,7 +1,8 @@
 {
   "name": "just-play-something",
+  "description": "Just Play Somethin' is a site that brings you music created by independent artists. Find tracks you haven't heard before.",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
