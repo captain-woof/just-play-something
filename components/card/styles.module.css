@@ -26,10 +26,16 @@
 }
 
 .track_image_wrapper {
-    height: 75%;
+    min-height: 60%;
     object-fit: cover;
     position: relative;
     width: 100%;
+}
+
+@media (min-width: 560px){
+    .track_image_wrapper {
+        min-height: 75%;
+    }
 }
 
 @keyframes rotate {
@@ -57,10 +63,16 @@
 }
 
 .track_info_wrapper {
-    padding: var(--sp-400);
+    padding: var(--sp-200) var(--sp-400);
     flex-grow: 1;
     font-family: var(--ff-normal);
     overflow-y: auto;
+}
+
+@media (min-width: 560px){
+    .track_info_wrapper {
+        padding: var(--sp-400);
+    }
 }
 
 .track_name {
