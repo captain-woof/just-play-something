@@ -1,0 +1,27 @@
+.full_page {
+    position: relative;
+    width: 100%;
+    height: calc(100vh - var(--sp-900));
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    flex-direction: column;
+}
+
+.heading {
+    color: var(--color-red);
+    font-family: var(--ff-emphasis);
+}
+
+.error_msg {
+    color: var(--color-white);
+    font-family: var(--ff-normal);
+}
+
+.icon {
+    --dimension: 2rem;
+    height: var(--dimension);
+    width: var(--dimension);
+    fill: var(--color-white);
+}

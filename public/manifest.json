@@ -21,7 +21,7 @@
     "start_url": "/",
     "background_color": "#242424",
     "display": "fullscreen",
-    "scope": "/",
+    "scope": ".",
     "theme_color": "#242424",
     "description": "Just Play Somethin' is a site that brings you music created by independent artists. Find tracks you haven't heard before.",
     "screenshots": [
