@@ -15,8 +15,13 @@ const Navbar = () => {
                     </a></Link>
                 </li>
                 <li className={styles.link}>
-                    <Link href="https://sohail-saha.in" passHref><a>
+                    <Link href="https://sohail-saha.in" passHref><a target="_blank">
                         Author
+                    </a></Link>
+                </li>
+                <li className={styles.link}>
+                    <Link href="https://www.buymeacoffee.com/captainwoof" passHref><a target="_blank">
+                        Support me
                     </a></Link>
                 </li>
             </ul>
