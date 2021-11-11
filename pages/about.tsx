@@ -23,7 +23,7 @@ const About: NextPage = () => {
                         What is this site?
                     </h3>
                     <p className={styles.about_text}>
-                        Hey! <a href="https://sohail-saha.in" className={styles.about_link}>This is me, Sohail</a>. Just Play Somethin&apos; is a site I created that brings you music created by independent artists. You will find tracks you haven&apos;t heard before. There is no search functionality, because you wouldn&apos;t know the name of a song that you haven&apos;t heard, isn&apos;t it?
+                        Hey! <a href="https://sohail-saha.in" className={styles.about_link}>This is me, Sohail</a>. Just Play Somethin&apos; is a site I created that brings you music created by independent artists. You may find tracks you haven&apos;t heard before. There is no search functionality, because you wouldn&apos;t know the name of a song that you haven&apos;t heard, isn&apos;t it?
                     </p>
                     <p className={styles.about_text}>
                         That being said, you can choose genres to filter the results, and you&apos;ll get curated recommendations from that genre.
