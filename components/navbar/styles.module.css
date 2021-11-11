@@ -13,7 +13,7 @@
     background-color: var(--color-black);
 }
 
-@media (min-width: 768px){
+@media (min-width: 768px) {
     .navbar {
         padding: 0 var(--sp-700);
         height: var(--sp-700);
@@ -38,23 +38,44 @@
     fill: var(--color-white);
 }
 
-@media (min-width: 768px){
+@media (min-width: 768px) {
     .home_icon {
         height: var(--fs-700);
         width: var(--fs-700);
     }
 }
 
-.links {
+.navbar_links {
     display: flex;
     flex-wrap: nowrap;
     gap: 0 var(--sp-500);
     list-style: none;
 }
 
-@media (min-width: 768px){
-    .links {
+@media (max-width: 480px) {
+    .navbar_links {
+        display: none;
+    }
+}
+
+@media (min-width: 768px) {
+    .navbar_links {
         gap: 0 var(--sp-700);
+    }
+}
+
+.menu_icon {
+    --dimension: 1.75rem;
+    fill: var(--color-white);
+    height: var(--dimension);
+    width: var(--dimension);
+    user-select: none;
+    cursor: pointer;
+}
+
+@media (min-width: 480px) {
+    .menu_icon {
+        display: none;
     }
 }
 
@@ -65,7 +86,7 @@
     font-size: var(--fs-300);
 }
 
-@media (min-width: 768px){
+@media (min-width: 768px) {
     .link {
         font-size: var(--fs-400);
     }
@@ -73,4 +94,74 @@
 
 .link:hover {
     color: var(--color-white);
+}
+
+.navbar_menu {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem 0;
+    position: absolute;
+    z-index: 100;
+    background-color: var(--color-black);
+    box-shadow: 0 0 20px var(--color-black);
+    min-width: 50%;
+    padding: var(--sp-500);
+    border-radius: 6px;
+    top: 3rem;
+    right: var(--sp-500);
+    transition: all 1s var(--ease-in-out);
+    opacity: 0;
+    transform: translateY(-125%);
+    outline: 2px solid var(--color-gray);
+}
+
+.navbar_menu.open {
+    opacity: 1;
+    transform: translateY(0%);
+}
+
+@media (min-width: 480px) {
+    .navbar_menu {
+        display: none;
+    }
+}
+
+.navbar_menu_backdrop {
+    content: '';
+    position: fixed;
+    inset: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 99;
+    display: none;
+    cursor: pointer;
+}
+
+@keyframes reveal_backdrop {
+    0% {
+        background-color: transparent;
+        opacity: 0;
+    }
+    100% {
+        background-color: var(--color-black);
+        opacity: 0.8;
+        
+    }
+}
+
+.navbar_menu_backdrop.open {
+    display: block;
+    animation: reveal_backdrop 1s var(--ease-in-out) both;
+    backdrop-filter: blur(4px) brightness(0.6);
+}
+
+.menu_link {
+    color: var(--color-white);
+    transition: color 0.5s ease-in-out;
+    font-weight: 600;
+    font-size: var(--fs-400);
+}
+
+.menu_link:hover {
+    color: var(--color-red-bright);
 }
