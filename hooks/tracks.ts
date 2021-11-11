@@ -27,7 +27,7 @@ export const useTracks = () => {
         dispatch(getLoadedTracksPendingAction(true))
         dispatch(getLoadedTracksErrorAction(false))
         // Fetch tracks from Jamendo
-        const res = await fetch(getFetchUrl(query))
+        const res = await fetch(getFetchUrl(query), { credentials: 'omit' })
         const res_json = await res.json()
         // Detect if error occurred
         if (res_json.headers.status !== 'success') {
