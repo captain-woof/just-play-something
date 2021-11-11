@@ -69,6 +69,18 @@ export const usePlayer = () => {
         // eslint-disable-next-line
     }, [currentTrack, tracks])
 
+    // Binds Space-bar to play/pause
+    useEffect(() => {
+        const handleKeypress = (e: KeyboardEvent) => {
+            if (e.code === 'Space' || e.key === " " || e.keyCode === 32 || e.charCode === 32) { // If space bar is pressed
+                e.preventDefault()
+                setPause(prev => !prev)
+            }
+        }
+        window.addEventListener('keypress', handleKeypress)
+        return () => { window.removeEventListener('keypress', handleKeypress) }
+    }, [])
+
     ///////////////////////
     //// Control functions
     ///////////////////////
