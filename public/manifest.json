@@ -1,0 +1,34 @@
+{
+    "short_name": "Just Play Somethin'",
+    "name": "Just Play Somethin'",
+    "icons": [
+        {
+            "src": "/icons/icon-512x512.svg",
+            "type": "image/svg+xml",
+            "sizes": "512x512"
+        },
+        {
+            "src": "/icons/icon-192x192.png",
+            "type": "image/png",
+            "sizes": "192x192"
+        },
+        {
+            "src": "/icons/icon-512x512.png",
+            "type": "image/png",
+            "sizes": "512x512"
+        }
+    ],
+    "start_url": "/",
+    "background_color": "#242424",
+    "display": "fullscreen",
+    "scope": "/",
+    "theme_color": "#242424",
+    "description": "Just Play Somethin' is a site that brings you music created by independent artists. Find tracks you haven't heard before.",
+    "screenshots": [
+        {
+            "src": "/images/just-play-somethin.png",
+            "type": "image/png",
+            "sizes": "1366x623"
+        }
+    ]
+}
