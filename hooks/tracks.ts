@@ -6,6 +6,7 @@ import { getCurrentTrackAction } from "../lib/redux/actions/currentTrack"
 import { getLoadedTracksAction, getLoadedTracksErrorAction, getLoadedTracksPendingAction } from "../lib/redux/actions/loadedTracks"
 import { useQuery } from "./query"
 import { getFetchUrl } from "../utils/query"
+import { useProgressPending } from "./progressPending"
 
 // Hook to fetch and merge new tracks with existing ones
 export const useTracks = () => {
@@ -19,8 +20,10 @@ export const useTracks = () => {
     const dispatch = useDispatch()
 
     // Function to fetch tracks, increment offset and set status states
+    const { setProgressPending } = useProgressPending()
     const fetchTracks = useCallback(async () => {
         // Set initial stats
+        setProgressPending(true)
         dispatch(getLoadedTracksPendingAction(true))
         dispatch(getLoadedTracksErrorAction(false))
         // Fetch tracks from Jamendo
@@ -30,6 +33,7 @@ export const useTracks = () => {
         if (res_json.headers.status !== 'success') {
             dispatch(getLoadedTracksPendingAction(false))
             dispatch(getLoadedTracksErrorAction(true))
+            setProgressPending(false)
             return
         }
         // Set newly fetched tracks to state
@@ -43,7 +47,8 @@ export const useTracks = () => {
         setOffset(query.offset + query.limit)
         dispatch(getLoadedTracksPendingAction(false))
         dispatch(getLoadedTracksErrorAction(false))
-    }, [dispatch, tracks.length, setOffset, query])
+        setProgressPending(false)
+    }, [dispatch, tracks.length, setOffset, query, setProgressPending])
 
     return {
         error,

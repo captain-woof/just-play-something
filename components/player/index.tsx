@@ -13,7 +13,7 @@ import { CSSProperties, useMemo } from 'react'
 
 const Player = () => {
     const { currentTrack } = useCurrentTrack()
-    const { audioRef, autoplay, volume, seekSecs, pause, setPause, mute, toggleMute, handleVolumeChange, toggleAutoplay, handleSeekChangeSlider, handleSeekChangeAudio, playNextTrack, playPrevTrack, showInfo, toggleTrackInfo } = usePlayer()
+    const { audioRef, autoplay, volume, seekSecs, pause, setPause, mute, toggleMute, handleVolumeChange, toggleAutoplay, handleSeekChangeSlider, handleSeekChangeAudio, playNextTrack, playPrevTrack, showInfo, toggleTrackInfo, startProgress, endProgress } = usePlayer()
 
     const volumeWidthStyle = useMemo(() => ({
         "--volume-perc": `${volume * 100}%`
@@ -139,7 +139,7 @@ const Player = () => {
             <div className={styles.track_controls}>
                 {/* Prev, Play/Pause, Next */}
                 <div className={cx(styles.player_button_container, !currentTrack && styles.player_buttons_disabled)}>
-                    <PrevTrackButton className={styles.player_button} title="Previous track" aria-labelledby="Previous track button" onClick={() => { currentTrack &&playPrevTrack() }} />
+                    <PrevTrackButton className={styles.player_button} title="Previous track" aria-labelledby="Previous track button" onClick={() => { currentTrack && playPrevTrack() }} />
                     {pause
                         ? <PlayButton className={styles.player_button} title="Play" aria-labelledby="Play button" onClick={() => { currentTrack && setPause(false) }} />
                         : <PauseButton className={styles.player_button} title="Pause" aria-labelledby="Pause button" onClick={() => { currentTrack && setPause(true) }} />}
@@ -157,7 +157,7 @@ const Player = () => {
                     </span>
                 </div>
             </div>
-            <audio className={styles.audio} src={currentTrack?.audio} ref={audioRef} onTimeUpdate={handleSeekChangeAudio} onEnded={playNextTrack} autoPlay={autoplay} onPlay={() => setPause(false)} muted={mute} />
+            <audio className={styles.audio} src={currentTrack?.audio} ref={audioRef} onTimeUpdate={handleSeekChangeAudio} onEnded={playNextTrack} autoPlay={autoplay} onPlay={() => setPause(false)} muted={mute} onLoadStart={startProgress} onCanPlay={endProgress} />
         </aside>
     )
 }

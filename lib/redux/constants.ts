@@ -8,5 +8,6 @@ export enum ActionTypes {
     SET_QUERY_ORDER,
     SET_QUERY_TYPE,
     SET_QUERY_BOOST,
-    SET_QUERY_TAG
+    SET_QUERY_TAG,
+    SET_PROGRESS_PENDING
 }

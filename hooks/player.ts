@@ -1,4 +1,5 @@
 import { useRef, useState, useEffect, useCallback, MouseEvent } from "react"
+import { useProgressPending } from "./progressPending"
 import { useCurrentTrack, useTracks } from "./tracks"
 
 
@@ -19,6 +20,9 @@ export const usePlayer = () => {
 
     // Reference to audio element
     const audioRef = useRef<HTMLAudioElement>(null)
+
+    // Progress pending
+    const { setProgressPending } = useProgressPending()
 
     /////////////////////
     // Listen for events
@@ -124,6 +128,18 @@ export const usePlayer = () => {
         }
     }, [currentTrack, setCurrentTrack, tracks])
 
+    // Function for setting progress pending
+
+    // Attaches event listener to audio (loadstart)
+    const startProgress = useCallback(() => {
+        setProgressPending(true)
+    }, [setProgressPending])
+
+    // Attaches event listener to audio (canplay)
+    const endProgress = useCallback(() => {
+        setProgressPending(false)
+    }, [setProgressPending])
+
     return {
         showInfo,
         toggleTrackInfo,
@@ -140,6 +156,8 @@ export const usePlayer = () => {
         handleSeekChangeSlider,
         handleSeekChangeAudio,
         playNextTrack,
-        playPrevTrack
+        playPrevTrack,
+        startProgress,
+        endProgress
     }
 }

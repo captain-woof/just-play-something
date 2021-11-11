@@ -1,0 +1,39 @@
+.pending_progress {
+    position: sticky;
+    height: 4px;
+    overflow: hidden;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 200;
+}
+
+@media (max-width: 560px){
+    .pending_progress {
+        position: fixed;
+        top: unset;
+        bottom: 0;
+    }
+}
+
+@keyframes indeterminate_progress {
+    0% {
+        width: 0%;
+        transform: translateX(0%);
+    }
+    100% {
+        width: 100%;
+        transform: translateX(100%);
+    }
+}
+
+.progress_bar {
+    position: relative;
+    background-color: var(--color-red-bright);
+    height: 100%;
+    width: 0%;
+}
+
+.progress_bar.animate {
+    animation: indeterminate_progress 2s linear infinite;
+}
