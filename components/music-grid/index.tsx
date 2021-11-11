@@ -30,7 +30,7 @@ const MusicGrid = () => {
     // Update tracks if query.tags changes (not accounting for first render, which is handled above)
     useEffect(() => {
         if (tracks.length !== 0) {
-            fetchTracks()
+            fetchTracks(false)
         }
         // eslint-disable-next-line
     }, [query.tags])

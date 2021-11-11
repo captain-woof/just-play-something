@@ -19,7 +19,7 @@ export const getQueryString = (query: Query): string => {
     let queryString = `client_id=${query.client_id}&featured=${query.featured}&limit=${query.limit}&format=${query.format}&order=${query.order}&type=${query.type}&imagesize=${query.imagesize}&audioformat=${query.audioformat}&boost=${query.boost}&include=${query.include}&offset=${query.offset}`
 
     if (!!query.tags) {
-        queryString += `tags=${query.tags}`
+        queryString += `&tags=${query.tags}`
     }
 
     return queryString

@@ -3,7 +3,7 @@ import { ITrack, ITracks } from "../types/track"
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '../lib/redux/store'
 import { getCurrentTrackAction } from "../lib/redux/actions/currentTrack"
-import { getLoadedTracksAction, getLoadedTracksErrorAction, getLoadedTracksPendingAction } from "../lib/redux/actions/loadedTracks"
+import { getClearAndLoadedTracksAction, getLoadedTracksAction, getLoadedTracksErrorAction, getLoadedTracksPendingAction } from "../lib/redux/actions/loadedTracks"
 import { useQuery } from "./query"
 import { getFetchUrl } from "../utils/query"
 import { useProgressPending } from "./progressPending"
@@ -21,7 +21,7 @@ export const useTracks = () => {
 
     // Function to fetch tracks, increment offset and set status states
     const { setProgressPending } = useProgressPending()
-    const fetchTracks = useCallback(async () => {
+    const fetchTracks = useCallback(async (mergeWithPrev: boolean = true) => {
         // Set initial stats
         setProgressPending(true)
         dispatch(getLoadedTracksPendingAction(true))
@@ -38,13 +38,24 @@ export const useTracks = () => {
         }
         // Set newly fetched tracks to state
         const newTracksData: ITracks = res_json.results
-        dispatch(getLoadedTracksAction(newTracksData.map((newTrackData, index) => ({
-            ...newTrackData,
-            index: index + tracks.length
-        }))))
+        // Check if new tracks should be appended or set as new, fresh ones
+        if (mergeWithPrev) {
+            // Merge with previous tracks
+            dispatch(getLoadedTracksAction(newTracksData.map((newTrackData, index) => ({
+                ...newTrackData,
+                index: index + tracks.length
+            }))))
+            setOffset(query.offset + query.limit)
+        } else {
+            // Clear previous tracks, use new ones
+            dispatch(getClearAndLoadedTracksAction(newTracksData.map((newTrackData, index) => ({
+                ...newTrackData,
+                index
+            }))))
+            setOffset(0)
+        }
 
         // Set stats after new data is set
-        setOffset(query.offset + query.limit)
         dispatch(getLoadedTracksPendingAction(false))
         dispatch(getLoadedTracksErrorAction(false))
         setProgressPending(false)

@@ -1,0 +1,40 @@
+.genres_container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    justify-content: center;
+}
+
+@media (min-width: 768px){
+    .genres_container {
+        margin-top: var(--sp-400);
+        gap: 0.75rem;
+    }
+}
+
+.genre {
+    color: var(--color-white);
+    background-color: var(--color-gray);
+    border-radius: 50rem;
+    padding: 0.25rem 0.5rem;
+    font-size: var(--fs-300);
+    font-weight: 600;
+    font-family: var(--ff-normal);
+    cursor: pointer;
+    transition: all 0.5s linear;
+}
+
+@media (min-width: 768px){
+    .genre {
+        padding: 0.25rem 0.75rem;
+    }
+}
+
+.genre:hover {
+    background-color: var(--color-red);
+}
+
+.genre.selected {
+    background-color: var(--color-red);
+}

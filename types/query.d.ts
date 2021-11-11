@@ -18,7 +18,7 @@ export type QueryBoost = "popularity_week" | "listens_week" | "downloads_week"
 
 export type QueryInclude = "licenses"
 
-export type QueryTag = 'lounge' | 'classical' | 'electronic' | 'jazz' | 'pop' | 'hiphop' | 'relaxation' | 'rock' | 'songwriter' | 'world' | 'metal' | null
+export type QueryTag = null | 'lounge' | 'classical' | 'electronic' | 'jazz' | 'pop' | 'hiphop' | 'relaxation' | 'rock' | 'songwriter' | 'world' | 'metal' | null
 
 export type Query = {
     client_id: string

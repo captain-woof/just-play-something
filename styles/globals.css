@@ -99,6 +99,14 @@ input, button, textarea {
   font-size: inherit;
 }
 
+/* Button reset */
+button {
+  margin: 0;
+  padding: 0;
+  outline: none;
+  border: none;
+}
+
 /* Images reset */
 
 img, picture {

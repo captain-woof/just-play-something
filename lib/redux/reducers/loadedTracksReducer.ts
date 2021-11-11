@@ -1,5 +1,5 @@
 import { ITracks } from "../../../types/track";
-import { LoadedTracksAction, LoadedTracksOffsetAction, LoadedTracksStatusAction } from "../actions/loadedTracks";
+import { LoadedTracksAction, LoadedTracksStatusAction } from "../actions/loadedTracks";
 import { ActionTypes } from "../constants";
 
 type LoadedTracks = {
@@ -14,10 +14,12 @@ const initialState: LoadedTracks = {
     pending: false
 }
 
-export const loadedTracksReducer = (state: LoadedTracks = initialState, action: LoadedTracksAction | LoadedTracksOffsetAction | LoadedTracksStatusAction): LoadedTracks => {
+export const loadedTracksReducer = (state: LoadedTracks = initialState, action: LoadedTracksAction | LoadedTracksStatusAction): LoadedTracks => {
     switch (action.type) {
         case ActionTypes.SET_LOADED_TRACKS:
             return { ...state, tracks: state.tracks.concat(action.payload as ITracks) }
+        case ActionTypes.CLEAR_AND_SET_LOADED_TRACKS:
+            return { ...state, tracks: action.payload as ITracks }
         case ActionTypes.SET_LOADED_TRACKS_PENDING:
             return { ...state, pending: action.payload as boolean }
         case ActionTypes.SET_LOADED_TRACKS_ERROR:

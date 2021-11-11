@@ -12,11 +12,6 @@ export type LoadedTracksStatusAction = {
     payload: boolean
 }
 
-export type LoadedTracksOffsetAction = {
-    type: ActionTypes
-    payload: number
-}
-
 // Action generators
 export const getLoadedTracksPendingAction = (pending: boolean) => ({
     type: ActionTypes.SET_LOADED_TRACKS_PENDING,
@@ -30,5 +25,10 @@ export const getLoadedTracksErrorAction = (error: boolean) => ({
 
 export const getLoadedTracksAction = (tracks: ITracks) => ({
     type: ActionTypes.SET_LOADED_TRACKS,
+    payload: tracks
+})
+
+export const getClearAndLoadedTracksAction = (tracks: ITracks) => ({
+    type: ActionTypes.CLEAR_AND_SET_LOADED_TRACKS,
     payload: tracks
 })
