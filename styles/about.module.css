@@ -1,0 +1,29 @@
+.inner_container {
+    padding: var(--sp-200) var(--sp-400);
+}
+
+@media (min-width: 560px) {
+    .inner_container {
+        padding: var(--sp-400) var(--sp-600);
+    }
+}
+
+.heading {
+    font-family: var(--ff-emphasis);
+    color: var(--color-white);
+    padding-bottom: var(--sp-400);
+}
+
+.about_text {
+    color: var(--color-white);
+    font-family: var(--ff-normal);
+}
+
+.about_link {
+    color: var(--color-red-bright);
+    transition: color 0.5s linear;
+}
+
+.about_link:hover {
+    color: var(--color-white);
+}

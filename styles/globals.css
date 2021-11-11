@@ -184,3 +184,11 @@ body, html {
     margin: 1rem;
   }
 }
+
+p {
+  letter-spacing: 0.075px;
+}
+
+p + * {
+  margin-top: var(--sp-300);
+}
