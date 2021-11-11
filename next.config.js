@@ -9,8 +9,7 @@ module.exports = withPWA({
   pwa: {
     dest: 'public',
     disable: false,
-    register: true,
-    scope: './',
-    sw: 'service-worker.js'
+    scope: '/',
+    skipWaiting: true
   }
 })
