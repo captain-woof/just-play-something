@@ -5,10 +5,13 @@ import { Provider } from 'react-redux'
 import store from '../lib/redux/store'
 import ProgressPending from '../components/progressPending'
 import GoogleAnalytics from '../components/google-analytics'
+import { Pwa } from '../components/pwa'
 
 function MyApp({ Component, pageProps }: AppProps) {
+  //usePwa()
   return (
     <>
+      <Pwa />
       <GoogleAnalytics />
       <Provider store={store}>
         <ProgressPending />
