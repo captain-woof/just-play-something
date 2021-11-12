@@ -28,7 +28,7 @@ const Navbar = () => {
 
     return (
         <nav className={styles.navbar} aria-labelledby="Navbar">
-            <Link href="/" passHref><a className={styles.home_link} aria-labelledby="Home">
+            <Link href="/" passHref><a className={styles.home_link} aria-labelledby="Homepage" title="Homepage">
                 <MusicIcon className={styles.home_icon} />
             </a></Link>
             <ul className={styles.navbar_links} aria-labelledby="Navbar links">
