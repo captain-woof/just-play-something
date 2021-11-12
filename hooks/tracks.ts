@@ -19,6 +19,14 @@ export const useTracks = () => {
     // Dispatch
     const dispatch = useDispatch()
 
+    // Function to set tracks manually, with PRELOADED DATA
+    const setTracks = useCallback((tracks: ITracks) => {
+        dispatch(getClearAndLoadedTracksAction(tracks.map((newTrackData, index) => ({
+            ...newTrackData,
+            index
+        }))))
+    }, [dispatch])
+
     // Function to fetch tracks, increment offset and set status states
     const { setProgressPending } = useProgressPending()
     const fetchTracks = useCallback(async (mergeWithPrev: boolean = true) => {
@@ -65,7 +73,8 @@ export const useTracks = () => {
         error,
         pending,
         tracks,
-        fetchTracks
+        fetchTracks,
+        setTracks
     }
 }
 

@@ -1,12 +1,26 @@
-import type { NextPage } from 'next'
 import Container from '../components/container'
 import Genres from '../components/genres';
 import Header from '../components/header';
 import MusicGrid from '../components/music-grid';
 import Player from '../components/player';
 import Seo from '../components/seo';
+import { GetStaticProps, InferGetStaticPropsType } from 'next'
+import { getPreloadedTracks } from '../utils/tracks';
 
-const Home: NextPage = () => {
+export const getStaticProps: GetStaticProps = async () => {
+  // Fetch data from Jamendo
+  const preloadedTracks = await getPreloadedTracks()
+
+  // Return
+  return {
+    props: {
+      preloadedTracks
+    },
+    revalidate: 15 * 60 /* 30 minutes */
+  }
+}
+
+const Home = ({ preloadedTracks }: InferGetStaticPropsType<typeof getStaticProps>) => {
   return (
     <>
       <Seo
@@ -20,7 +34,7 @@ const Home: NextPage = () => {
       <Container>
         <Header />
         <Genres />
-        <MusicGrid />
+        <MusicGrid preloadedTracks={preloadedTracks} />
         <Player />
       </Container>
     </>
