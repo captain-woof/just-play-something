@@ -6,6 +6,7 @@ import Error from "./error"
 import Empty from "./empty"
 import { useEffect, useState } from "react"
 import { useQuery } from "../../hooks/query"
+import { ITracks } from "../../types/track"
 
 enum Status {
     loading = 1,
@@ -14,18 +15,15 @@ enum Status {
     ok = 4
 }
 
-const MusicGrid = () => {
-    const { pending, error, tracks, fetchTracks } = useTracks()
+const MusicGrid = ({ preloadedTracks }: { preloadedTracks: ITracks }) => {
+    const { pending, error, tracks, fetchTracks, setTracks } = useTracks()
     const [status, setStatus] = useState<number>(Status.loading)
     const { query } = useQuery()
 
-    // Fetch tracks on first render
+    // Set PRELOADED tracks on first render
     useEffect(() => {
-        if (tracks.length === 0) {
-            fetchTracks()
-        }
-        // eslint-disable-next-line
-    }, [tracks])
+        setTracks(preloadedTracks)
+    }, [preloadedTracks, setTracks])
 
     // Update tracks if query.tags changes (not accounting for first render, which is handled above)
     useEffect(() => {

@@ -1,10 +1,10 @@
 import { Query } from "../types/query"
 
-export const getDefaultQuery = (): Query => ({
+export const getDefaultQuery = (offset?: number): Query => ({
     client_id: process.env.NEXT_PUBLIC_JAMENDO_CLIENT_API as string,
     featured: 1,
     limit: 8,
-    offset: 0,
+    offset: offset || 0,
     format: 'json',
     order: "popularity_week",
     type: 'single+albumtrack',

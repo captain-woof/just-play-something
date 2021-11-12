@@ -3,7 +3,7 @@ import { getDefaultQuery } from "../../../utils/query";
 import { QueryAction } from "../actions/query";
 import { ActionTypes } from "../constants";
 
-export const queryReducer = (query: Query = getDefaultQuery(), action: QueryAction): Query => {
+export const queryReducer = (query: Query = getDefaultQuery(8), action: QueryAction): Query => {
     switch (action.type) {
         case ActionTypes.SET_QUERY_LIMIT:
             return { ...query, limit: action.payload as QueryLimit }
