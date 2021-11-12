@@ -23,7 +23,6 @@ const MusicGrid = ({ preloadedTracks }: { preloadedTracks: ITracks }) => {
     // Set PRELOADED tracks on first render
     useEffect(() => {
         setTracks(preloadedTracks)
-        console.log("PRELOADED DATA SET")
     }, [preloadedTracks, setTracks])
 
     // Update tracks if query.tags changes (not accounting for first render, which is handled above)
