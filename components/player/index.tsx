@@ -135,6 +135,7 @@ const Player = () => {
 
             {/* Progress slider */}
             <input aria-labelledby="Progress slider" type='range' min={0} max={currentTrack?.duration} className={styles.slider} id='progress-track' onInput={handleSeekChangeSlider} value={seekSecs} disabled={!currentTrack} style={progressWidthStyle} />
+            <label htmlFor="progress-track" />
 
             <div className={styles.track_controls}>
                 {/* Prev, Play/Pause, Next */}
@@ -151,10 +152,10 @@ const Player = () => {
                         ? <VolumeMutedButton title="Volume slider" aria-labelledby="Volume slider" className={cx(styles.volume_icon, styles.volume_icon_dim)} onClick={toggleMute} />
                         : <VolumeButton title="Volume slider" aria-labelledby="Volume slider" className={styles.volume_icon} onClick={toggleMute} />
                     }
-                    <input aria-labelledby="Volume slider" type='range' min={0} max={1.0} step={0.01} className={cx(styles.slider, styles.volume_slider)} id='volume-track' onInput={handleVolumeChange} value={volume} style={volumeWidthStyle} />
-                    <span className={styles.volume_indicator}>
+                    <input aria-labelledby="Volume slider" type='range' min={0} max={1.0} step={0.01} className={cx(styles.slider, styles.volume_slider)} id='volume-level' onInput={handleVolumeChange} value={volume} style={volumeWidthStyle} />
+                    <label className={styles.volume_indicator} htmlFor="volume-level">
                         {parseInt(`${volume * 100}`)}
-                    </span>
+                    </label>
                 </div>
             </div>
             <audio className={styles.audio} src={currentTrack?.audio} ref={audioRef} onTimeUpdate={handleSeekChangeAudio} onEnded={playNextTrack} autoPlay={autoplay} onPlay={() => setPause(false)} muted={mute} onLoadStart={startProgress} onCanPlay={endProgress} />
